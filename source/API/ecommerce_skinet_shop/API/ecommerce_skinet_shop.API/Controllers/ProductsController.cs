@@ -24,6 +24,7 @@ namespace ecommerce_skinet_shop.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetProducts()
         {
             var spec = Startup.AutofacContainer.Resolve<ProductWithBrandsAndTypesSpecification>();//new ProductWithBrandsAndTypesSpecification();
@@ -32,10 +33,14 @@ namespace ecommerce_skinet_shop.API.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetProduct(int id)
         {
             var spec = new ProductWithBrandsAndTypesSpecification(id);
             var product = await _storeUnitOfWork.ProductRepository.GetEntityWithSpec(spec);
+            if (product == null)
+                return NotFound();
             return Ok(_mapper.Map<ProductDto>(product));
         }
 
