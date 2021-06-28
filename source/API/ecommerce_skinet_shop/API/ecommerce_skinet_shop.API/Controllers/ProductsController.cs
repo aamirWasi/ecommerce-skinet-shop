@@ -25,9 +25,9 @@ namespace ecommerce_skinet_shop.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetProducts()
+        public async Task<IActionResult> GetProducts(string sort,int? brandId,int? typeId)
         {
-            var spec = Startup.AutofacContainer.Resolve<ProductWithBrandsAndTypesSpecification>();//new ProductWithBrandsAndTypesSpecification();
+            var spec = new ProductWithBrandsAndTypesSpecification(sort, brandId, typeId);
             var products = await _storeUnitOfWork.ProductRepository.GetEntitiesWithSpec(spec);
             return Ok(_mapper.Map<IReadOnlyList<ProductDto>>(products));
         }
