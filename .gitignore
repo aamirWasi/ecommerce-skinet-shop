@@ -1,0 +1,8 @@
+**/.vs
+**/obj
+**/bin
+**/wwwroot/images
+**/*.user
+**/.Logs
+**/.jpeg
+[Ll]ogs/

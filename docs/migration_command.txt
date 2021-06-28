@@ -1,0 +1,5 @@
+----add-migration command-----
+add-migration "addedshopproducts" -context ecommerce_skinet_shop.Core.Contexts.StoreContext -o Data/Migrations/SeedData
+
+-----update-database command-----
+update-database -context ecommerce_skinet_shop.Core.Contexts.StoreContext
