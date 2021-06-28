@@ -1,5 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ecommerce_skinet_shop.API.Helpers;
 using ecommerce_skinet_shop.Core;
 using ecommerce_skinet_shop.Core.Contexts;
 using ecommerce_skinet_shop.Infrustructure;
@@ -55,6 +56,7 @@ namespace ecommerce_skinet_shop.API
 
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+            services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();
         }
 
@@ -70,6 +72,7 @@ namespace ecommerce_skinet_shop.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            app.UseStaticFiles();
 
             app.UseAuthorization();
 
