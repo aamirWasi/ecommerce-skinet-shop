@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿using Autofac;
+using AutoMapper;
 using ecommerce_skinet_shop.API.Dtos;
+using ecommerce_skinet_shop.Core.Specifications;
 using ecommerce_skinet_shop.Core.UnitOfWorks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,14 +26,16 @@ namespace ecommerce_skinet_shop.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProducts()
         {
-            var products = await _storeUnitOfWork.ProductRepository.GetAsync();
+            var spec = Startup.AutofacContainer.Resolve<ProductWithBrandsAndTypesSpecification>();//new ProductWithBrandsAndTypesSpecification();
+            var products = await _storeUnitOfWork.ProductRepository.GetEntitiesWithSpec(spec);
             return Ok(_mapper.Map<IReadOnlyList<ProductDto>>(products));
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProduct(int id)
         {
-            var product = await _storeUnitOfWork.ProductRepository.GetByIdAsync(id);
+            var spec = new ProductWithBrandsAndTypesSpecification(id);
+            var product = await _storeUnitOfWork.ProductRepository.GetEntityWithSpec(spec);
             return Ok(_mapper.Map<ProductDto>(product));
         }
 
