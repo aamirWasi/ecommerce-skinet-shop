@@ -1,6 +1,9 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using ecommerce_skinet_shop.API.Errors;
+using ecommerce_skinet_shop.API.Extensions;
 using ecommerce_skinet_shop.API.Helpers;
+using ecommerce_skinet_shop.API.Middlewares;
 using ecommerce_skinet_shop.Core;
 using ecommerce_skinet_shop.Core.Contexts;
 using ecommerce_skinet_shop.Infrustructure;
@@ -58,18 +61,17 @@ namespace ecommerce_skinet_shop.API
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "API", Version = "V1" });
-            });
+            services.AddApplicationServices();
+            services.AddSwaggerDocumentation();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             AutofacContainer = app.ApplicationServices.GetAutofacRoot();
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API V1"));
+            app.UseMiddleware<ExceptionMiddleware>();
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
+            app.UseSwaggerDocumentation();
 
             app.UseHttpsRedirection();
 
