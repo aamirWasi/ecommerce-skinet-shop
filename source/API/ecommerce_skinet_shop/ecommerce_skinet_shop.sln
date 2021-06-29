@@ -12,6 +12,13 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ecommerce_skinet_shop.Infrustructure", "Libraries\ecommerce_skinet_shop.Infrustructure\ecommerce_skinet_shop.Infrustructure.csproj", "{BFE70B80-AF4F-4FBD-B1A4-705050042702}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ecommerce_skinet_shop.Core", "Libraries\ecommerce_skinet_shop.Core\ecommerce_skinet_shop.Core.csproj", "{5156BD16-60D9-40BD-9DC0-EE113C5894F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce_skinet_shop.API", "API\ecommerce_skinet_shop.API\ecommerce_skinet_shop.API.csproj", "{ABCFC7C7-1140-4DF7-A249-4ED3F9040B08}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{713A7399-FE24-4B48-9037-8635E3EBB606}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce_skinet_shop.Infrustructure", "Libraries\ecommerce_skinet_shop.Infrustructure\ecommerce_skinet_shop.Infrustructure.csproj", "{BFE70B80-AF4F-4FBD-B1A4-705050042702}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ecommerce_skinet_shop.Core", "Libraries\ecommerce_skinet_shop.Core\ecommerce_skinet_shop.Core.csproj", "{5156BD16-60D9-40BD-9DC0-EE113C5894F6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,8 @@
 **/.vs
 **/obj
 **/bin
-**/*.user
 **/wwwroot/images
+**/*.user
+**/.Logs
+**/.jpeg
+[Ll]ogs/
