@@ -12,6 +12,7 @@ namespace ecommerce_skinet_shop.Core.Specifications
     {
         public ProductWithBrandsAndTypesSpecification(ProductSpecParams productSpec) : base(
             x=>
+            (string.IsNullOrWhiteSpace(productSpec.Search) || x.Name.ToLower().Contains(productSpec.Search)) &&
             (!productSpec.BrandId.HasValue || x.ProductBrandId==productSpec.BrandId) &&
             (!productSpec.TypeId.HasValue || x.ProductTypeId== productSpec.TypeId)
             )

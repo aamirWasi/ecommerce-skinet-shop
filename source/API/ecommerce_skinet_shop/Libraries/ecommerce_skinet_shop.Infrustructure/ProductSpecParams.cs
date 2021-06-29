@@ -14,7 +14,13 @@
             }
         }
         public string Sort { get; set; }
-        
+        public string Search
+        {
+            get { return _search; }
+            set { _search = value.ToLower(); }
+        }
+
+        private string _search;
         private const int _maxPageSize = 50;
         private int _pageSize = 6;
     }
