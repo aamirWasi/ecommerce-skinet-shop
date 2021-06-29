@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IPagination, IProduct } from './models/product';
+import { IPagination, IProduct } from './shared/models/product';
 
 @Component({
   selector: 'app-root',
