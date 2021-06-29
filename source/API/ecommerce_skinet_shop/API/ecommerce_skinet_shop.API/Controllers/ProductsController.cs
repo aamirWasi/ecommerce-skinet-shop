@@ -26,7 +26,7 @@ namespace ecommerce_skinet_shop.API.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Pagination<ProductDto>), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetProducts([FromQuery]ProductSpecParams productSpec)
         {
             var spec = new ProductWithBrandsAndTypesSpecification(productSpec);
