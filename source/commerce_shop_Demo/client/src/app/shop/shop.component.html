@@ -12,6 +12,9 @@
         <li class="list-group-item"
           *ngFor="let brand of brands"
           [class.active]="brand.id===this.brandId"
+          [value]="brand.id"
+          (click)="onBrandSelected(brand.id)"
+          style="cursor: pointer;"
           >{{brand.name}}</li>
       </ul>
       <h5 class="text-warning ml-3">Types</h5>
@@ -19,6 +22,8 @@
         <li class="list-group-item"
           *ngFor="let type of types"
           [class.active]="type.id===this.typeId"
+          [value]="type.id"
+          (click)="onTypeSelected(type.id)" style="cursor: pointer;"
           >{{type.name}}</li>
       </ul>
     </section>

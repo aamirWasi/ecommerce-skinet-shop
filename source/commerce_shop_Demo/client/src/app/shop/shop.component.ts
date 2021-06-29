@@ -25,7 +25,7 @@ export class ShopComponent implements OnInit {
     this.getTypes();
   }
   getProducts() {
-    this.shopService.getProducts().subscribe((response)=>{
+    this.shopService.getProducts(this.brandId,this.typeId).subscribe((response)=>{
       this.products = response.data;
     },error=>{
       console.log(error);
@@ -46,6 +46,16 @@ this.brands = [{id:0,name:'All'},...response];
     },error=>{
       console.log(error);
     })
+  }
+
+  onBrandSelected(brandId:number){
+    this.brandId = brandId;
+    this.getProducts();
+  }
+
+  onTypeSelected(typeId:number){
+    this.typeId = typeId;
+    this.getProducts();
   }
 
 }
