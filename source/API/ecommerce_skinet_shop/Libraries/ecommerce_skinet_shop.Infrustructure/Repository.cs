@@ -47,5 +47,10 @@ namespace ecommerce_skinet_shop.Infrustructure
         {
             return SpecificationEvalator<TEntity>.GetQuery(_dbSet.AsQueryable(), spec);
         }
+
+        public async Task<int> CountAsync(ISpecification<TEntity> spec)
+        {
+            return await ApplySpecification(spec).CountAsync();
+        }
     }
 }

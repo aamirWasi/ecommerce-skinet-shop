@@ -10,18 +10,19 @@ namespace ecommerce_skinet_shop.Core.Specifications
 {
     public class ProductWithBrandsAndTypesSpecification:BaseSpecification<Product>
     {
-        public ProductWithBrandsAndTypesSpecification(string sort, int? brandId, int? typeId):base(
+        public ProductWithBrandsAndTypesSpecification(ProductSpecParams productSpec) : base(
             x=>
-            (!brandId.HasValue || x.ProductBrandId==brandId) &&
-            (!typeId.HasValue || x.ProductTypeId==typeId)
+            (!productSpec.BrandId.HasValue || x.ProductBrandId==productSpec.BrandId) &&
+            (!productSpec.TypeId.HasValue || x.ProductTypeId== productSpec.TypeId)
             )
         {
             AddInclude(x => x.ProductBrand);
             AddInclude(x => x.ProductType);
             AddOrderby(x => x.Name);
-            if (!string.IsNullOrWhiteSpace(sort))
+            ApplyPaging(productSpec.PageSize * (productSpec.PageIndex - 1), productSpec.PageSize);
+            if (!string.IsNullOrWhiteSpace(productSpec.Sort))
             {
-                switch (sort)
+                switch (productSpec.Sort)
                 {
                     case "priceAsc":
                         AddOrderby(p => p.Price);

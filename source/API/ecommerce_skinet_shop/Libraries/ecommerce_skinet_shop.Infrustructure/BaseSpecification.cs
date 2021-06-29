@@ -11,6 +11,12 @@ namespace ecommerce_skinet_shop.Infrustructure
         public Expression<Func<TEntity, object>> Orderby { get; private set; }
         public Expression<Func<TEntity, object>> OrderbyDescending { get; private set; }
 
+        public int Take { get; private set; }
+
+        public int Skip { get; private set; }
+
+        public bool IsPagingEnabled { get; private set; }
+
         public BaseSpecification()
         {
 
@@ -29,6 +35,13 @@ namespace ecommerce_skinet_shop.Infrustructure
         protected void AddOrderby(Expression<Func<TEntity,object>> orderbyExpression)
         {
             Orderby = orderbyExpression;
+        }
+
+        public void ApplyPaging(int skip,int take)
+        {
+            Skip = skip;
+            Take = take;
+            IsPagingEnabled = true;
         }
 
         protected void AddOrderbyDescending(Expression<Func<TEntity, object>> orderbyDescendingExpression)

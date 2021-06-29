@@ -12,5 +12,6 @@ namespace ecommerce_skinet_shop.Infrustructure
         Task<TEntity> GetByIdAsync(TKey id);
         Task<TEntity> GetEntityWithSpec(ISpecification<TEntity> spce);
         Task<IReadOnlyList<TEntity>> GetEntitiesWithSpec(ISpecification<TEntity> spce);
+        Task<int> CountAsync(ISpecification<TEntity> spec);
     }
 }

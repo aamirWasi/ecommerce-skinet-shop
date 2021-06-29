@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using AutoMapper;
 using ecommerce_skinet_shop.API.Dtos;
+using ecommerce_skinet_shop.API.Helpers;
 using ecommerce_skinet_shop.Core.Specifications;
 using ecommerce_skinet_shop.Core.UnitOfWorks;
+using ecommerce_skinet_shop.Infrustructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -25,11 +27,14 @@ namespace ecommerce_skinet_shop.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ProductDto), StatusCodes.Status200OK)]
-        public async Task<IActionResult> GetProducts(string sort,int? brandId,int? typeId)
+        public async Task<IActionResult> GetProducts([FromQuery]ProductSpecParams productSpec)
         {
-            var spec = new ProductWithBrandsAndTypesSpecification(sort, brandId, typeId);
+            var spec = new ProductWithBrandsAndTypesSpecification(productSpec);
+            var countSpec = new ProductWithFiltersForCountSpecification(productSpec);
+            var totalItems = await _storeUnitOfWork.ProductRepository.CountAsync(countSpec);
             var products = await _storeUnitOfWork.ProductRepository.GetEntitiesWithSpec(spec);
-            return Ok(_mapper.Map<IReadOnlyList<ProductDto>>(products));
+            var data = _mapper.Map<IReadOnlyList<ProductDto>>(products);
+            return Ok(new Pagination<ProductDto>(productSpec.PageIndex,productSpec.PageSize,totalItems,data));
         }
 
         [HttpGet("{id}")]
