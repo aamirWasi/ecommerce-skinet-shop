@@ -15,13 +15,15 @@ export class ShopService {
 
   constructor(private http:HttpClient){}
 
-  getProducts(barndId?:number,typeId?:number){
+  getProducts(barndId?:number,typeId?:number,sort?:string){
     let params = new HttpParams();
 
     if(barndId)
       params =params.append('brandId',barndId.toString());
     if(typeId)
       params =params.append('typeId',typeId.toString());
+    if(sort)
+    params = params.append('sort',sort);
 
     return this.http.get<IPagination>(this.baseUrl+'products',{
       observe:'response',params

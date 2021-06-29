@@ -1,3 +1,4 @@
+import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from '../shared/models/product';
 import { IProductBrand } from '../shared/models/productBrand';
@@ -16,6 +17,12 @@ export class ShopComponent implements OnInit {
   brands:IProductBrand[];
   brandId=0;
   typeId=0;
+  sortSelected='name';
+  sortOptions = [
+    {name:'Alphabetical',value:'name'},
+    {name:'Price : Low to High',value:'priceAsc'},
+    {name:'Price : High to Low',value:'priceDesc'}
+  ]
 
   constructor(private shopService:ShopService) { }
 
@@ -25,7 +32,7 @@ export class ShopComponent implements OnInit {
     this.getTypes();
   }
   getProducts() {
-    this.shopService.getProducts(this.brandId,this.typeId).subscribe((response)=>{
+    this.shopService.getProducts(this.brandId,this.typeId,this.sortSelected).subscribe((response)=>{
       this.products = response.data;
     },error=>{
       console.log(error);
@@ -55,6 +62,11 @@ this.brands = [{id:0,name:'All'},...response];
 
   onTypeSelected(typeId:number){
     this.typeId = typeId;
+    this.getProducts();
+  }
+
+  onSortSelected(sort:string){
+    this.sortSelected = sort;
     this.getProducts();
   }
 
