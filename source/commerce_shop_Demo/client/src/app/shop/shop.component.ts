@@ -76,7 +76,7 @@ this.brands = [{id:0,name:'All'},...response];
   }
 
   onPageChanged(event:any){
-    this.shopParams.pageIndex=event.page;
+    this.shopParams.pageIndex=event;
     this.getProducts();
   }
 
