@@ -63,6 +63,13 @@ namespace ecommerce_skinet_shop.API
             services.AddControllers();
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", policy =>
+                {
+                    policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("https://localhost:4200");
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,7 +84,7 @@ namespace ecommerce_skinet_shop.API
 
             app.UseRouting();
             app.UseStaticFiles();
-
+            app.UseCors("CorsPolicy");
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
