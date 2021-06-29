@@ -1,5 +1,5 @@
 import { stringify } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { IProduct } from '../shared/models/product';
 import { IProductBrand } from '../shared/models/productBrand';
 import { IProductType } from '../shared/models/productType';
@@ -22,7 +22,8 @@ export class ShopComponent implements OnInit {
     {name:'Alphabetical',value:'name'},
     {name:'Price : Low to High',value:'priceAsc'},
     {name:'Price : High to Low',value:'priceDesc'}
-  ]
+  ];
+  @ViewChild('search',{static:true}) searchTerm:ElementRef;
 
   constructor(private shopService:ShopService) { }
 
@@ -70,14 +71,28 @@ this.brands = [{id:0,name:'All'},...response];
     this.getProducts();
   }
 
+  onSearch(){
+    this.shopParams.search = this.searchTerm.nativeElement.value;
+    this.shopParams.pageIndex=1;
+    this.getProducts();
+  }
+
+  onReset(){
+    this.searchTerm.nativeElement.value='';
+    this.shopParams = new ShopParams();
+    this.getProducts();
+  }
+
   onSortSelected(sort:string){
     this.shopParams.sort = sort;
     this.getProducts();
   }
 
   onPageChanged(event:any){
-    this.shopParams.pageIndex=event;
-    this.getProducts();
+    if(this.shopParams.pageIndex!==event){
+      this.shopParams.pageIndex=event;
+      this.getProducts();
+    }
   }
 
 }
