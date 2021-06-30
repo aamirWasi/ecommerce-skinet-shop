@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_skinet_shop.Core.Contexts;
 
-namespace ecommerce_skinet_shop.API.Data.Migrations.SeedData
+namespace ecommerce_skinet_shop.API.Data.Migrations.shoppingData
 {
     [DbContext(typeof(StoreContext))]
     partial class StoreContextModelSnapshot : ModelSnapshot

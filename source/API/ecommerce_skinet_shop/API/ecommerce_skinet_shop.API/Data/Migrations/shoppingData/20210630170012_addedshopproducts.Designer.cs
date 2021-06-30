@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_skinet_shop.Core.Contexts;
 
-namespace ecommerce_skinet_shop.API.Data.Migrations.SeedData
+namespace ecommerce_skinet_shop.API.Data.Migrations.shoppingData
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210628075140_addedshopproducts")]
+    [Migration("20210630170012_addedshopproducts")]
     partial class addedshopproducts
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
