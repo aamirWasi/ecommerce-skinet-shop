@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { IPagination } from '../shared/models/product';
+import { IPagination, IProduct } from '../shared/models/product';
 import { IProductBrand } from '../shared/models/productBrand';
 import { IProductType } from '../shared/models/productType';
 import {map} from 'rxjs/operators';
@@ -33,6 +33,10 @@ params=params.append('search',shopParams.search);
     }).pipe(map(response=>{
       return response.body
     }));
+  }
+
+  getProduct(id:number){
+    return this.http.get<IProduct>(this.baseUrl+'products/'+id);
   }
 
   getTypes(){
