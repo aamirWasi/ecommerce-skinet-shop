@@ -4,8 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { CoreModule } from './core/core.module';
+import {NgxSpinnerModule} from 'ngx-spinner'
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,12 @@ import { CoreModule } from './core/core.module';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    NgxSpinnerModule
   ],
-  providers: [],
+  providers: [
+    { provide:HTTP_INTERCEPTORS,useClass:LoadingInterceptor,multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
