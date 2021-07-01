@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ecommerce_skinet_shop.MembershipModule.Contexts;
+using ecommerce_skinet_shop.MembershipModule.Services;
 using System;
 
 namespace ecommerce_skinet_shop.MembershipModule
@@ -21,11 +22,7 @@ namespace ecommerce_skinet_shop.MembershipModule
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                    .InstancePerLifetimeScope();
-            //builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<ProductWithBrandsAndTypesSpecification>().AsSelf();
-            //builder.RegisterType<ProductTypeRepository>().As<IProductTypeRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<ProductBrandRepository>().As<IProductBrandRepository>().InstancePerLifetimeScope();
-            //builder.RegisterType<StoreUnitOfWork>().As<IStoreUnitOfWork>().InstancePerLifetimeScope();
+            builder.RegisterType<TokenService>().As<ITokenService>().InstancePerLifetimeScope();
             base.Load(builder);
         }
     }

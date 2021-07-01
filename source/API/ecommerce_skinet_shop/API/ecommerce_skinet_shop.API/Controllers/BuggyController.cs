@@ -1,5 +1,6 @@
 ﻿using ecommerce_skinet_shop.API.Errors;
 using ecommerce_skinet_shop.Core.Contexts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ecommerce_skinet_shop.API.Controllers
@@ -11,6 +12,13 @@ namespace ecommerce_skinet_shop.API.Controllers
         public BuggyController(StoreContext storeContext)
         {
             _storeContext = storeContext;
+        }
+
+        [HttpGet("testauth")]
+        [Authorize]
+        public ActionResult<string> GetSecretText()
+        {
+            return "secret stuff";
         }
 
         [HttpGet("notfound")]

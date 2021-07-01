@@ -67,7 +67,7 @@ namespace ecommerce_skinet_shop.API
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();
             services.AddApplicationServices();
-            services.AddIdentityService();
+            services.AddIdentityService(Configuration);
             services.AddSwaggerDocumentation();
             services.AddCors(options =>
             {
@@ -91,6 +91,8 @@ namespace ecommerce_skinet_shop.API
             app.UseRouting();
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
