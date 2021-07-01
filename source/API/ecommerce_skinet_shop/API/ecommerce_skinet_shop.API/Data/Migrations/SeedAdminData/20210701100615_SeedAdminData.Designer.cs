@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_skinet_shop.MembershipModule.Contexts;
 
-namespace ecommerce_skinet_shop.API.Data.Migrations.MemberSeedData
+namespace ecommerce_skinet_shop.API.Data.Migrations.SeedAdminData
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210630165810_addedmemberseeddata")]
-    partial class addedmemberseeddata
+    [Migration("20210701100615_SeedAdminData")]
+    partial class SeedAdminData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -253,14 +253,16 @@ namespace ecommerce_skinet_shop.API.Data.Migrations.MemberSeedData
                             Id = "02174cf0–9412–4cfe - afbf - 59f706d72cf6",
                             AccessFailedCount = 0,
                             City = "CTG",
-                            ConcurrencyStamp = "4da3b06f-e06e-403a-9fa8-974a5df9f7fe",
+                            ConcurrencyStamp = "bd586fbd-72fe-47ba-80bc-577a8bd49b66",
                             DisplayName = "aamir",
                             Email = "aamir@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAECyIoJ0L8gbnar1vE0/lowmsapP+bpAjam53GzdMIROm0As8nLJpg7Gg7qF+FfzAfQ==",
+                            NormalizedEmail = "AAMIR@GMAIL.COM",
+                            NormalizedUserName = "AAMIR@GMAIL.COM",
+                            PasswordHash = "AQAAAAEAACcQAAAAELskeWzrcno0LE+NJNpthrzmuxo+znpXPv4VI3aHuieFyc+K5et4GyyYJ1LR7PvACA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cd8e103f-5bc6-4d9c-9d62-75189e528d95",
+                            SecurityStamp = "728252ca-4535-405d-88ab-e6cefa231d7a",
                             State = "NY",
                             Street = "10 street main",
                             TwoFactorEnabled = false,

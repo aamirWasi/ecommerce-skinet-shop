@@ -46,6 +46,8 @@ namespace ecommerce_skinet_shop.MembershipModule.Contexts
                 Email = "aamir@gmail.com",
                 EmailConfirmed = true,
                 UserName = "aamir@gmail.com",
+                NormalizedEmail="AAMIR@GMAIL.COM",
+                NormalizedUserName= "AAMIR@GMAIL.COM",
                 City = "CTG",
                 State = "NY",
                 Street = "10 street main",
@@ -53,13 +55,9 @@ namespace ecommerce_skinet_shop.MembershipModule.Contexts
             };
             //set user password
             PasswordHasher<ApplicationUser> ph = new PasswordHasher<ApplicationUser>();
-            applicationUser.PasswordHash = ph.HashPassword(applicationUser, "mypassword_ ?");
+            applicationUser.PasswordHash = ph.HashPassword(applicationUser, "dev@aamir");
 
             //seed user
-            //builder.Entity<ApplicationUser>()
-            //.HasOne(a => a.Address)
-            //.WithOne(a => a.ApplicationUser)
-            //.HasForeignKey<Address>(c => c.ApplicationUserId);
             builder.Entity<ApplicationUser>().HasData(applicationUser);
             //set user role to admin
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
