@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace ecommerce_skinet_shop.API.Data.Migrations.SeedData
+namespace ecommerce_skinet_shop.API.Data.Migrations.SeedProductsData
 {
     public partial class addedshopproducts : Migration
     {

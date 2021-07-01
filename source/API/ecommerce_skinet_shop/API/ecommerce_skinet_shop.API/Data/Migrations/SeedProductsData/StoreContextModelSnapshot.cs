@@ -2,17 +2,15 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ecommerce_skinet_shop.Core.Contexts;
 
-namespace ecommerce_skinet_shop.API.Data.Migrations.SeedData
+namespace ecommerce_skinet_shop.API.Data.Migrations.SeedProductsData
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20210628075140_addedshopproducts")]
-    partial class addedshopproducts
+    partial class StoreContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

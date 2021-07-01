@@ -7,6 +7,8 @@ using ecommerce_skinet_shop.API.Middlewares;
 using ecommerce_skinet_shop.Core;
 using ecommerce_skinet_shop.Core.Contexts;
 using ecommerce_skinet_shop.Infrustructure;
+using ecommerce_skinet_shop.MembershipModule;
+using ecommerce_skinet_shop.MembershipModule.Contexts;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,6 +50,7 @@ namespace ecommerce_skinet_shop.API
             builder.RegisterModule(new APIModule(connectionString, migrationAssemblyName));
             builder.RegisterModule(new CoreModule(connectionString, migrationAssemblyName));
             builder.RegisterModule(new InfrustructureModule(connectionString, migrationAssemblyName));
+            builder.RegisterModule(new MembershipAuthModule(connectionString, migrationAssemblyName));
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -59,9 +62,12 @@ namespace ecommerce_skinet_shop.API
 
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+            services.AddDbContext<ApplicationContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
             services.AddAutoMapper(typeof(MappingProfile));
             services.AddControllers();
             services.AddApplicationServices();
+            services.AddIdentityService(Configuration);
             services.AddSwaggerDocumentation();
             services.AddCors(options =>
             {
@@ -85,6 +91,8 @@ namespace ecommerce_skinet_shop.API
             app.UseRouting();
             app.UseStaticFiles();
             app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

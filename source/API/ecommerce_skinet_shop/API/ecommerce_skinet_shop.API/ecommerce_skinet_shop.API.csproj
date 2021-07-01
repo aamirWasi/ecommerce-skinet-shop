@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -19,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\ecommerce_skinet_shop.Core\ecommerce_skinet_shop.Core.csproj" />
+    <ProjectReference Include="..\..\Libraries\ecommerce_skinet_shop.MembershipModule\ecommerce_skinet_shop.MembershipModule.csproj" />
   </ItemGroup>
 
   <ItemGroup>
