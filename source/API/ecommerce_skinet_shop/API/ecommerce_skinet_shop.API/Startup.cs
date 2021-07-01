@@ -18,6 +18,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,11 @@ namespace ecommerce_skinet_shop.API
             services.AddApplicationServices();
             services.AddIdentityService(Configuration);
             services.AddSwaggerDocumentation();
+            services.AddSingleton<IConnectionMultiplexer>(c=>
+            {
+                var config = ConfigurationOptions.Parse(Configuration.GetConnectionString("Redis"), true);
+                return ConnectionMultiplexer.Connect(config);
+            });
             services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy", policy =>
