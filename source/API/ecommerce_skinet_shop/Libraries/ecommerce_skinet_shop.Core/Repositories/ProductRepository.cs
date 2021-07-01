@@ -1,11 +1,9 @@
 ﻿using ecommerce_skinet_shop.Core.Contexts;
 using ecommerce_skinet_shop.Core.Entities;
 using ecommerce_skinet_shop.Infrustructure;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ecommerce_skinet_shop.Core.Repositories
 {
