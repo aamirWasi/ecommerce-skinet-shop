@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace ecommerce_skinet_shop.Infrustructure
@@ -31,6 +32,37 @@ namespace ecommerce_skinet_shop.Infrustructure
         public virtual async Task<TEntity> GetByIdAsync(TKey id)
         {
             return await _dbSet.FindAsync(id);
+        }
+
+        public virtual void Add(TEntity entity)
+        {
+            _dbSet.Add(entity);
+        }
+
+        public virtual void Remove(TKey id)
+        {
+            var entityToDelete = _dbSet.Find(id);
+            Remove(entityToDelete);
+        }
+
+        public virtual void Remove(TEntity entityToDelete)
+        {
+            if (_dbContext.Entry(entityToDelete).State == EntityState.Detached)
+            {
+                _dbSet.Attach(entityToDelete);
+            }
+            _dbSet.Remove(entityToDelete);
+        }
+
+        public virtual void Remove(Expression<Func<TEntity, bool>> filter)
+        {
+            _dbSet.RemoveRange(_dbSet.Where(filter));
+        }
+
+        public virtual void Edit(TEntity entityToUpdate)
+        {
+            _dbSet.Attach(entityToUpdate);
+            _dbContext.Entry(entityToUpdate).State = EntityState.Modified;
         }
 
         public async Task<TEntity> GetEntityWithSpec(ISpecification<TEntity> spce)
