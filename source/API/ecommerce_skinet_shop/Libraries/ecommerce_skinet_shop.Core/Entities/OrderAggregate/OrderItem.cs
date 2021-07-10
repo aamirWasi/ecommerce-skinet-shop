@@ -8,9 +8,8 @@ namespace ecommerce_skinet_shop.Core.Entities.OrderAggregate
         {
         }
 
-        public OrderItem(int id, ProductItemOrdered itemOrdered, int quantity, decimal price)
+        public OrderItem(ProductItemOrdered itemOrdered, int quantity, decimal price)
         {
-            Id = id;
             ItemOrdered = itemOrdered;
             Quantity = quantity;
             Price = price;

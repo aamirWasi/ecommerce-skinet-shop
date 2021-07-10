@@ -35,7 +35,7 @@ namespace ecommerce_skinet_shop.Core.Entities.OrderAggregate
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
         public string PaymentIntentId { get; set; }
 
-        public decimal TotoalAmount()
+        public decimal GetTotal()
         {
             return Subtotal + DeliveryMethod.Price;
         }

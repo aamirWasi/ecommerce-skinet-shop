@@ -9,6 +9,21 @@ using System.Threading.Tasks;
 
 namespace ecommerce_skinet_shop.Core.UnitOfWorks
 {
+    public class OrderUnitOfWork : UnitOfWork, IOrderUnitOfWork
+    {
+        public IOrderRepository OrderRepository { get; set; }
+        public IOrderItemRepository OrderItemRepository { get; set; }
+        public IDeliveryMethodRepository DeliveryMethodRepository { get; set; }
+        public OrderUnitOfWork(OrderContext context,
+            IOrderRepository orderRepository, IOrderItemRepository orderItemRepository, IDeliveryMethodRepository deliveryMethodRepository
+            )
+            : base(context)
+        {
+            OrderRepository = orderRepository;
+            DeliveryMethodRepository = deliveryMethodRepository;
+            OrderItemRepository = orderItemRepository;
+        }
+    }
     public class StoreUnitOfWork : UnitOfWork, IStoreUnitOfWork
     {
         public IProductRepository ProductRepository { get; set; }
