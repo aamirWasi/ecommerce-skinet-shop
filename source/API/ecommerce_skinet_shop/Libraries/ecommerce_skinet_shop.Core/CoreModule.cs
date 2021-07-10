@@ -24,6 +24,10 @@ namespace ecommerce_skinet_shop.Core
                    .WithParameter("connectionString", _connectionString)
                    .WithParameter("migrationAssemblyName", _migrationAssemblyName)
                    .InstancePerLifetimeScope();
+            builder.RegisterType<OrderContext>()
+                   .WithParameter("connectionString", _connectionString)
+                   .WithParameter("migrationAssemblyName", _migrationAssemblyName)
+                   .InstancePerLifetimeScope();
             builder.RegisterType<ProductRepository>().As<IProductRepository>().InstancePerLifetimeScope();
             builder.RegisterType<BasketRepository>().As<IBasketRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ProductWithBrandsAndTypesSpecification>().AsSelf();

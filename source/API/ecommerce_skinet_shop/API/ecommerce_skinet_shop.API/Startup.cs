@@ -63,6 +63,8 @@ namespace ecommerce_skinet_shop.API
 
             services.AddDbContext<StoreContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
+            services.AddDbContext<OrderContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connectionString, b => b.MigrationsAssembly(migrationAssemblyName)));
             services.AddAutoMapper(typeof(MappingProfile));
